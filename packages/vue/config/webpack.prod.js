@@ -1,21 +1,12 @@
 const { merge } = require('webpack-merge');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
-const commonConfig = require('./webpack.common');
 const packageJson = require('../package.json');
+const commonConfig = require('./webpack.common');
 
-const devConfig = {
-  mode: 'development',
+const prodConfig = {
+  mode: 'production',
   output: {
-    publicPath: 'http://localhost:8082/',
-  },
-  devServer: {
-    port: 8082,
-    historyApiFallback: {
-      index: 'index.html',
-    },
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
+    filename: '[name].[contenthash].js'
   },
   plugins: [
     new ModuleFederationPlugin({
@@ -25,8 +16,8 @@ const devConfig = {
         './VueApp': './src/bootstrap',
       },
       shared: packageJson.dependencies,
-    })
+    }),
   ],
 };
 
-module.exports = merge(commonConfig, devConfig);
+module.exports = merge(commonConfig, prodConfig);

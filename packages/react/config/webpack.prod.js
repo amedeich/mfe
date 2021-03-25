@@ -1,9 +1,7 @@
 const { merge } = require('webpack-merge');
-const ModuleFederationPlugin = require('webpack/lib/host-mfe/ModuleFederationPlugin');
-const commonConfig = require('./webpack.common');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const packageJson = require('../package.json');
-
-const domain = process.env.PRODUCTION_DOMAIN;
+const commonConfig = require('./webpack.common');
 
 const prodConfig = {
   mode: 'production',
@@ -12,10 +10,10 @@ const prodConfig = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'host-mfe',
-      remotes: {
-        reactmfe: `reactmfe@${domain}/reactmfe/remoteEntry.js`,
-        vuemfe: `vuemfe@${domain}/vuemfe/remoteEntry.js`,
+      name: 'reactmfe',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './ReactApp': './src/bootstrap'
       },
       shared: packageJson.dependencies,
     }),

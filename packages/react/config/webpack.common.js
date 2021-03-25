@@ -1,3 +1,4 @@
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
     module: {
       rules: [
@@ -18,5 +19,10 @@ module.exports = {
             use: ['source-map-loader'],
           },
       ]
-    }
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: "./public/index.html",
+      }),
+    ]
   }
