@@ -16,7 +16,7 @@ const prodConfig = {
       name: 'host-mfe',
       remotes: {
         reactmfe: `reactmfe@${domain}/reactmfe/latest/remoteEntry.js`,
-        vuemfe: `vuemfe@${domain}/vuemfe/remoteEntry.js`,
+        vuemfe: `vuemfe@${domain}/vuemfe/latest/remoteEntry.js`,
       },
       shared: packageJson.dependencies,
     }),
