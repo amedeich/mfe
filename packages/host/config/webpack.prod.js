@@ -15,7 +15,7 @@ const prodConfig = {
     new ModuleFederationPlugin({
       name: 'host-mfe',
       remotes: {
-        reactmfe: `reactmfe@${domain}/reactmfe/remoteEntry.js`,
+        reactmfe: `reactmfe@${domain}/reactmfe/latest/remoteEntry.js`,
         vuemfe: `vuemfe@${domain}/vuemfe/remoteEntry.js`,
       },
       shared: packageJson.dependencies,
